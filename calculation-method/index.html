@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<title>틀 면적과 재료 환산 계산 방식 · 한 틀 더</title>
+<meta name="description" content="원형과 사각형 틀의 바닥 면적, 틀 개수를 반영한 배율, 그램 재료 환산 예와 제한을 설명합니다.">
+<link rel="canonical" href="https://recipepilot-snbow.duckdns.org/calculation-method/">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="simple-header"><a class="simple-brand" href="/">한 틀 더</a><nav aria-label="사이트 안내"><a href="/tools/recipe-prep/">준비표 만들기</a><a href="/calculation-method/">계산 방식</a><a href="/about/">도구 소개</a><a href="/privacy/">개인정보 안내</a></nav></header>
+<main class="simple-main"><p class="eyebrow-copy">계산 방식과 제한</p><h1>바닥 면적의 비율로<br>재료를 환산합니다.</h1>
+<p class="lede">틀 안쪽 치수를 cm로 입력합니다. 원래 틀과 목표 틀에서 반죽 깊이가 같다는 가정입니다.</p>
+<section><h2>사용하는 공식</h2><ul class="formula"><li>원형 면적 = π × (지름 ÷ 2)² × 틀 개수</li><li>사각형 면적 = 가로 × 세로 × 틀 개수</li><li>배율 = 목표 틀 총면적 ÷ 원래 틀 총면적</li><li>목표 재료 무게 = 원래 재료 무게 × 배율</li></ul><p>틀 개수는 1 이상의 정수여야 하고, 치수와 재료 무게는 0보다 커야 합니다. 계산 범위를 벗어나는 값은 오류로 처리합니다.</p></section>
+<section><h2>직접 확인할 수 있는 예</h2><div class="table-scroll"><table><thead><tr><th scope="col">원래 → 목표</th><th scope="col">배율</th><th scope="col">원래 120g →</th></tr></thead><tbody><tr><td>원형 18cm 1개 → 원형 21cm 1개</td><td>49 ÷ 36 ≈ 1.361111</td><td>163.333g</td></tr><tr><td>사각형 20 × 20cm 1개 → 20 × 30cm 1개</td><td>600 ÷ 400 = 1.5</td><td>180g</td></tr><tr><td>원형 18cm 1개 → 같은 틀 2개</td><td>2</td><td>240g</td></tr></tbody></table></div><p class="note">계산 방식 설명용 수치입니다. 검증된 베이킹 레시피나 결과 보장이 아닙니다.</p></section>
+<section><h2>읽어 오는 재료의 범위</h2><p>한 줄에 재료 하나와 그램 하나를 씁니다. “박력분 120g”, “120 g 무염 버터”, “우유 2.5그램”, “밀가루 1,200g”처럼 입력할 수 있습니다. g·그램·그람 표기를 읽습니다.</p><p>컵·ml·개수, 분수, 범위, kg, 여러 재료를 한 줄에 쓴 경우는 자동 환산하지 않습니다. 숫자가 들어간 재료명 등 애매한 입력도 확인이 필요합니다. 읽지 못한 줄은 그대로 남아 있으며 직접 고치거나 제외해야 합니다.</p><p>최대 500줄·100,000자, 재료 이름 200자, 숫자 입력 40자까지 받습니다. 자동 해석 뒤에는 항상 이름과 무게를 확인해야 계산합니다.</p></section>
+<section><h2>정밀도와 실제 베이킹</h2><p>JavaScript 부동소수점 수로 계산하고 표시값은 소수점 셋째 자리까지 반올림합니다. 0.001g 미만은 지수로 표시합니다. 표시한 자릿수는 실제 계량 정확도를 의미하지 않습니다.</p><p>옆면이 곧은 단순 원형·사각형 틀만 가정합니다. 중심 구멍, 경사, 장식 굴곡, 틀 높이와 용량은 계산하지 않습니다. 재료가 비례해 늘어도 굽는 시간·온도와 반죽 상태가 그대로 유지된다고 보장할 수 없습니다.</p><p>틀의 최대 용량과 실제 저울의 정밀도를 따로 확인하세요. 굽는 시간·온도와 식품 안전은 검증된 레시피와 제조사 지침을 따르세요.</p></section>
+<a class="detail-link" href="/tools/recipe-prep/">공식으로 준비표 만들기</a></main>
+<footer class="simple-footer"><p>한 틀 더 · 그램 재료를 직접 확인하는 작은 베이킹 도구<br>계산은 이 브라우저에서 이루어집니다. 굽는 결과와 식품 안전을 보장하지 않습니다.</p></footer>
+</body>
+</html>

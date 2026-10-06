@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://recipepilot-snbow.duckdns.org/sitemap.xml
