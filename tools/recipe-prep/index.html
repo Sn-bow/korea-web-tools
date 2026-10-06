@@ -13,7 +13,7 @@
 <script src="core.js" defer></script><script src="app.js" defer></script>
 </head>
 <body>
-<header class="site-header"><a class="brand" href="/" aria-label="한 틀 더 처음으로"><span class="brand-icon" aria-hidden="true">◒</span> 한 틀 더 <span class="brand-sub">BAKING PREP</span></a><span class="privacy-pill"><span aria-hidden="true">●</span> 이 브라우저 안에서만</span></header>
+<header class="site-header"><a class="brand" href="/" aria-label="한 틀 더 처음으로"><span class="brand-icon" aria-hidden="true">◒</span> 한 틀 더 <span class="brand-sub">BAKING PREP</span></a><span class="privacy-pill"><span aria-hidden="true">●</span> 계산은 이 브라우저에서</span></header>
 <nav class="utility-nav" aria-label="사이트 안내"><a href="/">홈</a><a href="/calculation-method/">계산 방식</a><a href="/about/">도구 소개</a><a href="/privacy/">개인정보 안내</a></nav>
 <main id="top">
 <noscript><p class="notice">이 도구의 계산·확인·저장 기능은 브라우저 JavaScript가 필요합니다. 계산 방식과 제한 사항은 <a href="/calculation-method/">계산 방식 안내</a>에서 읽을 수 있습니다.</p></noscript>
@@ -27,7 +27,7 @@
   <div class="section-heading"><div><p class="eyebrow">STEP 01</p><h2>어떤 레시피로 구울까요?</h2></div><button type="button" class="button subtle" id="sample">예제로 시작 ↗</button></div>
   <div class="paste-layout"><div><label for="recipe-name">준비표 이름 <span class="optional">선택</span></label><input id="recipe-name" maxlength="80" placeholder="예: 주말 베이킹">
     <label for="recipe-text" class="spaced-label">재료와 그램 수</label><textarea id="recipe-text" rows="7" maxlength="100000" placeholder="박력분 120g&#10;설탕 75g&#10;무염 버터 60g&#10;풀어 둔 달걀 90g" spellcheck="false" aria-describedby="paste-help"></textarea>
-    <p id="paste-help" class="field-help">한 줄에 한 재료. g·그램 단위를 읽으며, 1,200g과 2.5g도 괜찮아요.</p>
+    <p id="paste-help" class="field-help">한 줄에 한 재료. g·그램·그람 단위를 읽으며, 1,200g과 2.5g도 괜찮아요.</p>
     <button type="button" class="button primary" id="parse">재료 읽어오기 <span aria-hidden="true">→</span></button></div>
     <aside class="tip-card"><span class="tip-icon" aria-hidden="true">✳</span><h3>계산 전에<br>한 번만 확인해 주세요.</h3><p>읽어 온 재료 이름과 그램 수를 직접 고칠 수 있어요. 읽지 못한 줄도 그대로 보여드려요.</p><div class="divider"></div><p class="small-text">컵·ml·달걀 개수는 무게로 바꾸지 않아요. 그램을 직접 입력하거나 해당 줄을 제외해 주세요.</p><p class="small-text">예제는 기능 확인용으로 만든 수치이며, 검증된 베이킹 레시피가 아니에요.</p></aside></div>
   <div id="review" class="review" hidden><div class="review-title"><h3>읽어 온 재료 확인</h3><span id="review-summary" class="muted"></span></div><p class="field-help">틀린 값을 고치고 확인 버튼을 눌러 주세요. 제외한 줄은 준비표에 들어가지 않아요.</p><div id="review-rows"></div><div class="review-bottom"><p id="review-status" role="status"></p><button type="button" class="button primary" id="confirm">이 재료로 확인</button></div></div>
@@ -51,9 +51,9 @@
   </div>
 </section>
 <div class="footer-actions"><div><button type="button" id="load" class="text-button">저장한 준비표 불러오기</button><button type="button" id="delete-save" class="text-button">저장본 삭제</button></div><button type="button" id="reset" class="text-button">처음부터 다시</button></div>
-<footer><span class="brand-footer">한 틀 더</span><p>붙여넣은 내용은 외부로 전송하지 않아요.<br>계산은 브라우저에서 이루어집니다. 계정·광고·분석 도구는 없습니다.<br>정적 웹서버의 접속 기록은 별도이며 <a href="/privacy/">개인정보 안내</a>를 확인해 주세요.</p></footer>
-<dialog id="reset-dialog"><h2>처음부터 시작할까요?</h2><p>현재 입력과 체크를 비워요. 따로 저장한 준비표는 남아 있어요.</p><div class="dialog-actions"><button type="button" id="reset-cancel" class="button secondary">계속 작업</button><button type="button" id="reset-confirm" class="button primary">입력 비우기</button></div></dialog>
-<dialog id="delete-dialog"><h2>저장본을 삭제할까요?</h2><p>이 브라우저에 저장된 준비표 1개를 삭제해요. 현재 화면의 입력과 체크는 그대로 남아요.</p><div class="dialog-actions"><button type="button" id="delete-cancel" class="button secondary">취소</button><button type="button" id="delete-confirm" class="button primary">저장본 삭제</button></div></dialog>
+<footer><span class="brand-footer">한 틀 더</span><p>붙여넣은 내용은 외부로 전송하지 않아요.<br>계산은 브라우저에서 이루어집니다. 계정·광고·분석 도구는 없습니다.<br>일반 접속 기록은 꺼져 있고 오류 기록은 사용합니다. <a href="/privacy/">개인정보 안내</a>를 확인해 주세요.</p></footer>
+<dialog id="reset-dialog" aria-labelledby="reset-dialog-title" aria-describedby="reset-dialog-description"><h2 id="reset-dialog-title">처음부터 시작할까요?</h2><p id="reset-dialog-description">현재 입력과 체크를 비워요. 따로 저장한 준비표는 남아 있어요.</p><div class="dialog-actions"><button type="button" id="reset-cancel" class="button secondary">계속 작업</button><button type="button" id="reset-confirm" class="button primary">입력 비우기</button></div></dialog>
+<dialog id="delete-dialog" aria-labelledby="delete-dialog-title" aria-describedby="delete-dialog-description"><h2 id="delete-dialog-title">저장본을 삭제할까요?</h2><p id="delete-dialog-description">이 브라우저에 저장된 준비표 1개를 삭제해요. 현재 화면의 입력과 체크는 그대로 남아요.</p><div class="dialog-actions"><button type="button" id="delete-cancel" class="button secondary">취소</button><button type="button" id="delete-confirm" class="button primary">저장본 삭제</button></div></dialog>
 </main>
 </body>
 </html>
