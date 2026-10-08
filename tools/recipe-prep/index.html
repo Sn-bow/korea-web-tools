@@ -19,16 +19,16 @@
 <main id="top">
 <noscript><p class="notice">이 도구의 계산·확인·저장 기능은 브라우저 JavaScript가 필요합니다. 계산 방식과 제한 사항은 <a href="/calculation-method/">계산 방식 안내</a>에서 읽을 수 있습니다.</p></noscript>
 <section class="hero">
-  <div><p class="eyebrow">작은 베이킹 준비 도구 · 초기 실험</p><h1>틀은 바꾸고,<br>준비는 가볍게.</h1><p class="hero-copy">레시피를 붙여넣고 재료를 확인하세요.<br>내 틀에 맞춰 계산한 계량표가 준비됩니다.</p></div>
-  <div class="pan-art" aria-hidden="true"><span class="art-label">SAME DEPTH, NEW PAN</span><div class="pan-shape small"><span>18 cm</span></div><span class="art-arrow">↗</span><div class="pan-shape large"><span>21 cm</span></div><span class="art-note">재료 하나씩, 차근차근.</span></div>
+  <div><p class="eyebrow">작은 베이킹 준비 도구 · 초기 실험</p><h1>베이킹 틀을 바꾸고,<br>그램 계량표를 만드세요.</h1><p class="hero-copy">그램 반죽 재료를 붙여넣고 확인하세요.<br>틀 배율에 맞춘 계량 체크리스트를 만듭니다.</p></div>
 </section>
 <nav class="steps" aria-label="준비 순서"><a href="#paste-section"><span>01</span> 붙여넣고 확인</a><a href="#pan-section"><span>02</span> 내 틀로 바꾸기</a><a href="#result-section"><span>03</span> 계량하며 체크</a></nav>
 <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
 <section id="paste-section" class="panel">
   <div class="section-heading"><div><p class="eyebrow">STEP 01</p><h2>어떤 레시피로 구울까요?</h2></div><button type="button" class="button subtle" id="sample">예제로 시작 ↗</button></div>
-  <div class="paste-layout"><div><label for="recipe-name">준비표 이름 <span class="optional">선택</span></label><input id="recipe-name" maxlength="80" placeholder="예: 주말 베이킹">
-    <label for="recipe-text" class="spaced-label">재료와 그램 수</label><textarea id="recipe-text" rows="7" maxlength="100000" placeholder="박력분 120g&#10;설탕 75g&#10;무염 버터 60g&#10;풀어 둔 달걀 90g" spellcheck="false" aria-describedby="paste-help"></textarea>
+  <div class="paste-layout"><div><label for="recipe-text">재료와 그램 수</label><textarea id="recipe-text" rows="7" maxlength="100000" placeholder="박력분 120g&#10;설탕 75g&#10;무염 버터 60g&#10;풀어 둔 달걀 90g" spellcheck="false" aria-describedby="paste-help scope-help"></textarea>
     <p id="paste-help" class="field-help">한 줄에 한 재료. g·그램·그람 단위를 읽으며, 1,200g과 2.5g도 괜찮아요.</p>
+    <p id="scope-help" class="field-help">확인한 재료는 모두 같은 틀 배율로 환산합니다. 반죽 재료만 넣고, 아이싱·장식의 양은 별도로 계산하세요.</p>
+    <label for="recipe-name" class="spaced-label">준비표 이름 <span class="optional">선택</span></label><input id="recipe-name" maxlength="80" placeholder="예: 주말 베이킹">
     <button type="button" class="button primary" id="parse">재료 읽어오기 <span aria-hidden="true">→</span></button></div>
     <aside class="tip-card"><span class="tip-icon" aria-hidden="true">✳</span><h3>계산 전에<br>한 번만 확인해 주세요.</h3><p>읽어 온 재료 이름과 그램 수를 직접 고칠 수 있어요. 읽지 못한 줄도 그대로 보여드려요.</p><div class="divider"></div><p class="small-text">컵·ml·달걀 개수는 무게로 바꾸지 않아요. 그램을 직접 입력하거나 해당 줄을 제외해 주세요.</p><p class="small-text">예제는 기능 확인용으로 만든 수치이며, 검증된 베이킹 레시피가 아니에요.</p></aside></div>
   <div id="review" class="review" hidden><div class="review-title"><h3>읽어 온 재료 확인</h3><span id="review-summary" class="muted"></span></div><p class="field-help">틀린 값을 고치고 확인 버튼을 눌러 주세요. 제외한 줄은 준비표에 들어가지 않아요.</p><div id="review-rows"></div><div class="review-bottom"><p id="review-status" role="status"></p><button type="button" class="button primary" id="confirm">이 재료로 확인</button></div></div>
