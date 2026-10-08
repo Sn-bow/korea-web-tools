@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta name="description" content="성인 주간 연습 모임을 위한 참석 체크와 짝 배정. 오늘의 짝을 미리 보고 완료한 라운드만 이 브라우저에 기록하세요. 한국어·영어 지원.">
+  <meta name="theme-color" content="#f6f4ed">
+  <title>모임 짝 배정 · Partner Rotation</title>
+  <link rel="canonical" href="https://recipepilot-snbow.duckdns.org/tools/partner-rotation/">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./style.css?v=1">
+  <script src="./core.js" defer></script>
+  <script src="./app.js?v=1" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i="skip">본문으로 건너뛰기</a>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Partner Rotation"><span class="brand-mark" aria-hidden="true">↔</span><span>Partner Rotation<small data-i="brandSub">주간 성인 연습 모임</small></span></a>
+    <div class="language"><label for="language">Language</label><select id="language" aria-label="Language"><option value="ko">한국어</option><option value="en">English</option></select></div>
+  </header>
+  <main id="main">
+    <div class="hero">
+      <div><p class="eyebrow" data-i="eyebrow">WEEKLY PRACTICE, TOGETHER</p><h1 data-i="title">오늘 모인 사람들과,<br>다음 짝을.</h1><p class="lede" data-i="lede">참석을 체크하고, 짝을 미리 보고, 끝난 라운드만 기록하세요.<br> 작은 연습 모임의 다음 만남을 준비하는 도구입니다.</p></div>
+      <div class="privacy-pill"><span class="privacy-dot" aria-hidden="true"></span><span data-i="privacyPill">참가자 정보는 이 브라우저 안에</span></div>
+    </div>
+    <div class="app-grid">
+      <section class="panel roster-panel" aria-labelledby="roster-title">
+        <div class="section-heading"><div><p class="step" data-i="step1">01 / 참석 확인</p><h2 id="roster-title" data-i="rosterTitle">우리 모임</h2></div><span class="count-badge" id="roster-count">0</span></div>
+        <p class="helper" data-i="rosterHelp">등록은 최대 40명, 오늘 참석은 4–20명입니다. 불참은 과거 기록에 영향을 주지 않습니다.</p>
+        <div id="roster-list" class="roster-list"></div>
+        <div class="attendance-footer" id="attendance-footer" hidden><strong id="attendance-count"></strong><button class="text-button" id="select-none" type="button" data-i="selectNone">모두 불참</button></div>
+        <details id="add-details" open>
+          <summary data-i="addNames">이름 / 별명 등록</summary>
+          <form id="roster-form" novalidate>
+            <label for="names" class="field-label" data-i="namesLabel">한 줄에 한 명씩</label>
+            <textarea id="names" rows="5" maxlength="4000" spellcheck="false" autocomplete="off" autocapitalize="off" enterkeyhint="enter" aria-describedby="names-help roster-error" placeholder="예: 민지 A&#10;준호&#10;수빈&#10;Alex"></textarea>
+            <p class="helper" id="names-help" data-i="namesHelp">동명이인은 ‘민지 A’, ‘민지 B’처럼 구분하세요. 이름 옆 수정 버튼으로 이름을 바꿔도 기록은 유지됩니다.</p>
+            <p id="roster-error" class="error" role="alert" hidden></p>
+            <div class="button-row"><button class="button secondary" type="submit" data-i="addButton">명단에 추가</button><button class="text-button" id="sample" type="button" data-i="sample">7명 예시 체험</button></div>
+          </form>
+        </details>
+      </section>
+      <div class="workspace">
+        <section class="panel round-panel" aria-labelledby="round-title">
+          <div class="section-heading"><div><p class="step" data-i="step2">02 / 미리보기 → 완료</p><h2 id="round-title" data-i="roundTitle">다음 라운드</h2></div><span class="status-badge" id="round-state" data-i="waiting">준비 중</span></div>
+          <div id="round-meta" class="round-meta"></div>
+          <div id="round-content"></div>
+          <div id="preview-warning" class="notice" hidden></div>
+          <p id="round-error" class="error" role="alert" hidden></p>
+          <div class="round-actions"><button class="button primary" id="generate" type="button" data-i="generate">다음 짝 미리보기 <span aria-hidden="true">↗</span></button><button class="button complete" id="complete" type="button" hidden data-i="complete">라운드 완료 · 기록</button></div>
+          <p class="helper" id="preview-help" data-i="previewHelp">미리보기는 기록을 바꾸지 않습니다. 실제로 끝난 뒤 ‘완료’를 누르세요.</p>
+        </section>
+        <section class="panel record-panel" aria-labelledby="record-title">
+          <div class="section-heading"><div><p class="step" data-i="step3">03 / 이어 가는 기록</p><h2 id="record-title" data-i="recordTitle">모임 기록</h2></div><button class="text-button" id="undo" type="button" disabled data-i="undo">마지막 완료 되돌리기</button></div>
+          <div class="metrics"><div><strong id="metric-rounds">0</strong><span data-i="metricRounds">완료 라운드</span></div><div><strong id="metric-repeats">0</strong><span data-i="metricRepeats">다시 만난 짝</span></div><div><strong id="metric-byes">—</strong><span data-i="metricByes">참석자 휴식 범위</span></div></div>
+          <p class="helper" data-i="metricsHelp">반복은 이전에 만났던 짝이 다시 배정된 횟수입니다. 휴식은 현재 참석자의 누적 횟수이며, 불참은 휴식에 포함하지 않습니다.</p>
+          <details id="distribution-details"><summary data-i="distribution">참가자별 만남 · 휴식</summary><div class="table-scroll"><table><thead><tr><th scope="col" data-i="name">이름</th><th scope="col" data-i="rounds">참여</th><th scope="col" data-i="partners">만난 사람</th><th scope="col" data-i="rests">휴식</th></tr></thead><tbody id="distribution-body"></tbody></table></div></details>
+          <details id="history-details"><summary id="history-summary" data-i="history">완료 기록 보기</summary><div id="history-list"></div></details>
+          <div class="export-row"><button class="text-button" id="copy" type="button" data-i="copy">미리보기 + 기록 복사</button><button class="text-button" id="print" type="button" data-i="print">인쇄 / PDF</button></div>
+        </section>
+      </div>
+    </div>
+    <section class="storage-panel" aria-labelledby="storage-title">
+      <div><h2 id="storage-title" data-i="storageTitle">다음 모임에도 이어서</h2><p class="helper" data-i="storageHelp">저장은 직접 선택합니다. 명단·참석 상태·완료 기록 1개를 이 브라우저에 저장하며, 미리보기는 저장하지 않습니다. 변경 후 다시 저장하세요.</p><p id="save-status" class="save-status" role="status"></p></div>
+      <div class="storage-actions"><button class="button secondary" id="save" type="button" data-i="save">이 기기에 저장</button><button class="button secondary" id="restore" type="button" data-i="restore">저장한 기록 복원</button><button class="text-button danger" id="reset" type="button" data-i="reset">모두 초기화</button></div>
+    </section>
+    <details class="backup-details"><summary data-i="backupTitle">선택 사항: 백업 파일</summary><p class="helper" data-i="backupHelp">브라우저 데이터 삭제에 대비해 JSON 파일로 보관할 수 있습니다. 이름과 기록이 담긴 일반 텍스트 파일이므로 직접 관리해 주세요. 복원은 현재 모임을 교체합니다.</p><div class="button-row"><button class="button secondary" id="backup" type="button" data-i="backup">백업 내려받기</button><button class="button secondary" id="import" type="button" data-i="import">백업 파일 복원</button><input id="import-file" type="file" accept=".json,application/json" hidden></div></details>
+    <details class="method"><summary data-i="methodTitle">짝 배정과 기록은 어떻게 작동하나요?</summary><div data-i="methodBody"><p>현재 참석자와 완료 기록을 바탕으로 이전 짝의 반복이 적은 조합을 찾습니다. 홀수 명이면 지금 참석한 사람 중 누적 휴식이 가장 적은 사람에게 휴식을 배정합니다. 조건이 같은 조합은 무작위로 정해집니다.</p><p>참석자와 과거 배정에 따라 새 상대가 부족할 수 있습니다. 모든 상대를 이미 만났다면 반복은 불가피합니다. 이후 모든 라운드의 무반복이나 최적 결과를 보장하지 않습니다. 불참자는 다음 모임에 다시 체크하면 됩니다.</p><p>이름은 화면 표시용이며 내부 참가자 ID로 기록을 연결합니다. 이름을 수정해도 이력이 유지됩니다. 기록된 이름은 현재 이름으로 표시됩니다. 완료한 마지막 라운드만 되돌릴 수 있습니다. 한 모임에 최대 2,000라운드를 기록합니다.</p><p>참가자 데이터는 서버로 전송하지 않습니다. 로그인, 외부 분석, 외부 폰트, 광고 없이 이 브라우저에서 동작합니다. 페이지 제공 서버의 일반 요청 처리는 별개입니다. 작은 성인 모임을 위한 초기 실험 도구입니다.</p></div></details>
+    <p id="announcement" class="announcement" role="status" aria-live="polite" aria-atomic="true"></p>
+  </main>
+  <footer><span>Partner Rotation</span><span><a href="/">RecipePilot / 한 틀 더</a> · <a href="/privacy/">Privacy / 개인정보 안내</a></span><span data-i="footer">성인 모임을 위한 작은 진행 도구 · KO / EN</span></footer>
+  <section id="print-output" aria-label="Print output"></section>
+  <dialog id="rename-dialog"><form id="rename-form" novalidate><h2 data-i="renameTitle">이름 수정</h2><p class="helper" data-i="renameHelp">이 참가자의 ID와 이전 기록은 그대로 유지됩니다.</p><label for="rename-input" data-i="name">이름</label><input id="rename-input" type="text" maxlength="60" autocomplete="off" enterkeyhint="done" required><p class="error" id="rename-error" role="alert" hidden></p><div class="button-row"><button class="button primary" type="submit" data-i="apply">변경 적용</button><button class="button secondary" id="rename-cancel" type="button" data-i="cancel">취소</button></div></form></dialog>
+  <dialog id="copy-dialog"><h2 data-i="copyFallbackTitle">직접 복사하기</h2><p class="helper" data-i="copyFallbackHelp">자동 복사를 사용할 수 없습니다. 아래 내용을 선택해 복사하세요.</p><textarea id="copy-text" rows="12" readonly></textarea><button class="button secondary" id="copy-close" type="button" data-i="close">닫기</button></dialog>
+  <noscript><p class="noscript">이 도구는 JavaScript가 필요합니다. / This tool needs JavaScript enabled.</p></noscript>
+</body>
+</html>
